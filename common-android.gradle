@@ -1,5 +1,6 @@
 apply plugin: libs.plugins.kotlin.android.get().pluginId
 apply plugin: libs.plugins.kotlin.compose.get().pluginId
+apply plugin: libs.plugins.serialization.get().pluginId
 apply plugin: libs.plugins.parcelize.get().pluginId
 apply plugin: 'kotlin-kapt'
 
@@ -53,6 +54,9 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.navigation.compose)
+
+    // Ymir
     implementation(libs.ymir.core)
 
     //DI
@@ -61,6 +65,7 @@ dependencies {
 
     //Utils
     implementation(libs.utils.logcat)
+    implementation(libs.utils.serialization)
 
     //Test
     testImplementation(libs.junit)

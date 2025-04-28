@@ -3,4 +3,9 @@ apply from: "$rootDir/common-android.gradle"
 dependencies {
     // Shared
     implementation(project(":app:shared:ui"))
+    implementation(project(":app:shared:network"))
+    implementation(project(":app:shared:navigation"))
+
+    // Network
+    implementation(libs.ktor.core)
 }

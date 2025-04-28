@@ -7,10 +7,15 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
+import br.com.lucascordeiro.nexly.feature.details.presentation.DetailsScreen
+import br.com.lucascordeiro.nexly.feature.home.presentation.HomeScreen
+import br.com.lucascordeiro.nexly.shared.navigation.MainNavigation
+import br.com.lucascordeiro.nexly.shared.navigation.NavHost
+import br.com.lucascordeiro.nexly.shared.navigation.route
+import br.com.lucascordeiro.nexly.shared.navigation.routes.DetailsRoute
+import br.com.lucascordeiro.nexly.shared.navigation.routes.HomeRoute
 import br.com.lucascordeiro.nexly.shared.ui.theme.NexlyTheme
 
 class MainActivity : ComponentActivity() {
@@ -20,28 +25,19 @@ class MainActivity : ComponentActivity() {
         setContent {
             NexlyTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
+                    val navController = rememberNavController()
+
+                    NavHost(
+                        navigation = MainNavigation,
+                        navController = navController,
+                        startDestination = HomeRoute,
                         modifier = Modifier.padding(innerPadding)
-                    )
+                    ) {
+                        route<HomeRoute> { HomeScreen() }
+                        route<DetailsRoute> { DetailsScreen(it) }
+                    }
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    NexlyTheme {
-        Greeting("Android")
     }
 }
