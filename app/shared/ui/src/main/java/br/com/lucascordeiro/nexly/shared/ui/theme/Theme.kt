@@ -1,6 +1,5 @@
-package br.com.lucascordeiro.nexly.ui.theme
+package br.com.lucascordeiro.nexly.shared.ui.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
