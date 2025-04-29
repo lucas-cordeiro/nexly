@@ -2,6 +2,7 @@ package br.com.lucascordeiro.nexly.shared.network.client
 
 import br.com.lucascordeiro.nexly.shared.network.BuildConfig
 import br.com.lucascordeiro.nexly.shared.network.error.NetworkException
+import br.com.lucascordeiro.nexly.shared.network.error.NoInternetConnectionException
 import io.ktor.client.call.body
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.plugins.ClientRequestException
@@ -12,9 +13,10 @@ import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.request.header
-import io.ktor.http.headers
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
+import java.net.SocketTimeoutException
+import java.net.UnknownHostException
 
 internal data class HttpClientImpl(
     private val httpUrl: HttpUrl,
@@ -26,6 +28,17 @@ internal data class HttpClientImpl(
 
             HttpResponseValidator {
                 handleResponseExceptionWithRequest { exception, request ->
+                    if (exception is UnknownHostException) {
+                        throw NoInternetConnectionException()
+                    }
+
+                    if (exception is SocketTimeoutException) {
+                        throw NetworkException(
+                            code = 408,
+                            message = "Request timed out"
+                        )
+                    }
+
                     val clientException = exception as? ClientRequestException
                         ?: return@handleResponseExceptionWithRequest
                     val exceptionResponse = clientException.response

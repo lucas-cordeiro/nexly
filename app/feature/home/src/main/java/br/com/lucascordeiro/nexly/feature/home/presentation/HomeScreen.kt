@@ -33,6 +33,7 @@ import br.com.lucascordeiro.nexly.feature.home.presentation.model.SortOption
 import br.com.lucascordeiro.nexly.shared.navigation.MainNavigation
 import br.com.lucascordeiro.nexly.shared.navigation.routes.DetailsRoute
 import br.com.lucascordeiro.nexly.shared.ui.components.UITextChip
+import br.com.lucascordeiro.nexly.shared.ui.components.UiFeedback
 import br.com.lucascordeiro.nexly.shared.ui.components.UiLoading
 import br.com.lucascordeiro.nexly.shared.ui.components.UiToolbar
 import br.com.lucascordeiro.nexly.shared.ui.theme.Gray12
@@ -101,6 +102,11 @@ fun HomeScreen() {
             )
         }
     }
+
+    UiFeedback(
+        errorState = state.error,
+        onDismissRequest = viewModel::clickedError
+    )
 }
 
 @Composable

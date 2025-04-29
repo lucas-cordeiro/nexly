@@ -4,10 +4,12 @@ import androidx.lifecycle.viewModelScope
 import br.com.lucascordeiro.nexly.feature.home.domain.usecase.GetAllExchangesUseCase
 import br.com.lucascordeiro.nexly.feature.home.presentation.model.ExchangeUi
 import br.com.lucascordeiro.nexly.feature.home.presentation.model.SortOption
+import br.com.lucascordeiro.nexly.shared.network.error.NetworkException
+import br.com.lucascordeiro.nexly.shared.network.error.NoInternetConnectionException
+import br.com.lucascordeiro.nexly.shared.ui.error.ErrorState
 import io.github.lucascordeiro.ymir.core.viewmodel.ViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -37,7 +39,7 @@ internal class HomeViewModel(
                 )
 
             } catch (e: Exception) {
-                e.printStackTrace()
+                handleError(e)
             } finally {
                 setState { state -> state.copy(isLoading = false) }
             }
@@ -51,12 +53,29 @@ internal class HomeViewModel(
     }
 
     fun clickedSortOption(option: SortOption) {
-        if(option.isSelected) return
+        if (option.isSelected) return
 
         updateSortOptions(
             field = option.field,
             exchanges = state.value.exchanges
         )
+    }
+
+    fun clickedError() {
+        viewModelScope.launch {
+            setState { state -> state.copy(error = ErrorState.Dismiss) }
+            fetchData()
+        }
+    }
+
+    private suspend fun handleError(e: Exception) {
+        val error = when (e) {
+            is NoInternetConnectionException -> ErrorState.Show.NoInternetConnection
+            is NetworkException -> ErrorState.Show.Network
+            else -> ErrorState.Show.Generic
+        }
+
+        setState { state -> state.copy(error = error, exchanges = emptyList()) }
     }
 
     private fun updateSortOptions(

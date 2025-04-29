@@ -34,6 +34,7 @@ import br.com.lucascordeiro.nexly.feature.details.presentation.model.ExchangeVol
 import br.com.lucascordeiro.nexly.shared.navigation.MainNavigation
 import br.com.lucascordeiro.nexly.shared.navigation.routes.DetailsRoute
 import br.com.lucascordeiro.nexly.shared.ui.components.UITextChip
+import br.com.lucascordeiro.nexly.shared.ui.components.UiFeedback
 import br.com.lucascordeiro.nexly.shared.ui.components.UiLoading
 import br.com.lucascordeiro.nexly.shared.ui.components.UiToolbar
 import br.com.lucascordeiro.nexly.shared.ui.theme.Blue01
@@ -108,6 +109,11 @@ fun DetailsScreen(route: DetailsRoute) {
             }
         }
     }
+
+    UiFeedback(
+        errorState = state.error,
+        onDismissRequest = viewModel::clickedError
+    )
 }
 
 @Composable
