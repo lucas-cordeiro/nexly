@@ -5,6 +5,7 @@ import br.com.lucascordeiro.nexly.feature.details.domain.usecase.GetExchangeById
 import io.github.lucascordeiro.ymir.core.viewmodel.ViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -34,6 +35,12 @@ internal class DetailsViewModel(
             } finally {
                 setState { state -> state.copy(isLoading = false) }
             }
+        }
+    }
+
+    fun clickedBack() {
+        viewModelScope.launch {
+            sendAction { DetailsUiAction.NavigateBack }
         }
     }
 }

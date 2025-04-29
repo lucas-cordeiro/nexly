@@ -13,7 +13,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import br.com.lucascordeiro.nexly.shared.navigation.MainNavigation
 import br.com.lucascordeiro.nexly.shared.navigation.routes.DetailsRoute
+import br.com.lucascordeiro.nexly.shared.ui.components.UiLoading
+import br.com.lucascordeiro.nexly.shared.ui.components.UiToolbar
+import io.github.lucascordeiro.ymir.core.utils.LifecycleUtils.ObserveActions
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 
@@ -22,12 +26,15 @@ fun DetailsScreen(route: DetailsRoute) {
     val viewModel: DetailsViewModel = koinViewModel() { parametersOf(route.id) }
     val state by viewModel.state.collectAsStateWithLifecycle()
 
+    ObserveActions(viewModel, ::handleAction)
+
     Column {
-        this.AnimatedVisibility(
-            visible = state.isLoading
-        ) {
-            CircularProgressIndicator()
-        }
+        UiToolbar(
+            title = "Details",
+            onBackClick = viewModel::clickedBack
+        )
+
+        UiLoading(state.isLoading)
 
         AnimatedContent(
             targetState = state.exchange,
@@ -44,5 +51,11 @@ fun DetailsScreen(route: DetailsRoute) {
                 }
             }
         }
+    }
+}
+
+internal fun handleAction(action: DetailsUiAction) {
+    when (action) {
+        is DetailsUiAction.NavigateBack -> MainNavigation.navigateBack()
     }
 }
