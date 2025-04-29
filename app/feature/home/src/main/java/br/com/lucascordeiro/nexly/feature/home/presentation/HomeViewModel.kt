@@ -25,7 +25,6 @@ internal class HomeViewModel(
                 setState { state -> state.copy(isLoading = true) }
 
                 val exchanges = withContext(ioDispatcher) {
-                    delay(3000)
                     getAllExchangesUseCase().map { ExchangeUi.fromDomain(it) }
                 }
 

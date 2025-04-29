@@ -2,10 +2,10 @@ package br.com.lucascordeiro.nexly.feature.details.presentation
 
 import androidx.lifecycle.viewModelScope
 import br.com.lucascordeiro.nexly.feature.details.domain.usecase.GetExchangeByIdUseCase
+import br.com.lucascordeiro.nexly.feature.details.presentation.model.ExchangeUi
 import io.github.lucascordeiro.ymir.core.viewmodel.ViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -28,7 +28,7 @@ internal class DetailsViewModel(
                     getExchangeByIdUseCase(exchangeId)
                 }
 
-                setState { state -> state.copy(exchange = exchange) }
+                setState { state -> state.copy(exchange = ExchangeUi.fromDomain(exchange)) }
 
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -41,6 +41,13 @@ internal class DetailsViewModel(
     fun clickedBack() {
         viewModelScope.launch {
             sendAction { DetailsUiAction.NavigateBack }
+        }
+    }
+
+    fun clickedWebsite() {
+        viewModelScope.launch {
+            val website = state.value.exchange?.website ?: return@launch
+            sendAction { DetailsUiAction.OpenWebsite(website) }
         }
     }
 }

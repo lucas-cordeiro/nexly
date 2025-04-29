@@ -32,6 +32,7 @@ import br.com.lucascordeiro.nexly.feature.home.presentation.model.ExchangeUi
 import br.com.lucascordeiro.nexly.feature.home.presentation.model.SortOption
 import br.com.lucascordeiro.nexly.shared.navigation.MainNavigation
 import br.com.lucascordeiro.nexly.shared.navigation.routes.DetailsRoute
+import br.com.lucascordeiro.nexly.shared.ui.components.UITextChip
 import br.com.lucascordeiro.nexly.shared.ui.components.UiLoading
 import br.com.lucascordeiro.nexly.shared.ui.components.UiToolbar
 import br.com.lucascordeiro.nexly.shared.ui.theme.Gray12
@@ -190,19 +191,9 @@ private fun ExchangeListItem(
 
                 Spacer(modifier = Modifier.width(8.dp))
 
-                Text(
+                UITextChip(
                     text = "ID: ${exchange.id}",
-                    style = NexlyTheme.typography.body,
-                    color = exchange.color,
-                    modifier = Modifier
-                        .background(
-                            color = exchange.color.copy(.05f),
-                            shape = MaterialTheme.shapes.small
-                        )
-                        .padding(
-                            horizontal = 12.dp,
-                            vertical = 4.dp
-                        )
+                    color = exchange.color
                 )
             }
 

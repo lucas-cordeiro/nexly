@@ -4,4 +4,5 @@ import io.github.lucascordeiro.ymir.core.action.UiAction
 
 internal sealed class DetailsUiAction : UiAction {
     data object NavigateBack : DetailsUiAction()
+    data class OpenWebsite(val url: String) : DetailsUiAction()
 }
