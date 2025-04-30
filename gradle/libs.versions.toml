@@ -16,6 +16,9 @@ app-startup = "1.2.0"
 serialization = "1.8.1"
 secrets = "2.0.1"
 navigationCompose = "2.8.9"
+coroutines = "1.10.2"
+runner = "1.6.2"
+mockk = "1.14.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -33,7 +36,7 @@ androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-man
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
-
+coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
 
 #Ymir
 ymir-core = { group = "io.github.lucas-cordeiro.ymir", name = "core", version.ref = "ymir" }
@@ -58,6 +61,12 @@ utils-logcat = { group = "com.squareup.logcat", name = "logcat", version.ref = "
 utils-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "serialization" }
 utils-appstartup = { group = "androidx.startup", name = "startup-runtime", version.ref = "app-startup" }
 utils-secrets = { group = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", name = "secrets-gradle-plugin", version.ref = "secrets" }
+
+#Tests
+test-androidx-runner = { group = "androidx.test", name = "runner", version.ref = "runner" }
+mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
+mockk-android = { group = "io.mockk", name = "mockk-android", version.ref = "mockk" }
+mockk-agent = { group = "io.mockk", name = "mockk-agent", version.ref = "mockk" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

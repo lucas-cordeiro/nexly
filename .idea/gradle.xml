@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/app/shared" />
             <option value="$PROJECT_DIR$/app/shared/navigation" />
             <option value="$PROJECT_DIR$/app/shared/network" />
+            <option value="$PROJECT_DIR$/app/shared/test" />
             <option value="$PROJECT_DIR$/app/shared/ui" />
           </set>
         </option>

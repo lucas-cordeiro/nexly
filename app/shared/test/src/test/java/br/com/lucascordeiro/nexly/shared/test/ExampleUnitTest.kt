@@ -1,4 +1,4 @@
-package br.com.lucascordeiro.nexly.feature.home
+package br.com.lucascordeiro.nexly.shared.test
 
 import org.junit.Test
 
