@@ -35,8 +35,8 @@ This project is inspired by the [Cryptooly – Crypto Wallet Mobile UI](https://
 
 - **Kotlin** `2.1.20`
 - **Jetpack Compose** `2025.04.01`
-- **Koin** `4.0.4`
-- **Ktor Client** (with kotlinx.serialization) `3.1.2`
+- [**Koin**](https://insert-koin.io/) `4.0.4`
+- [**Ktor Client**](https://ktor.io/) (with kotlinx.serialization) `3.1.2`
 - **Material 3**
 - **MVVM + Clean Architecture**
 - **CoinAPI integration**
@@ -49,10 +49,10 @@ The project includes both **unit tests** and **UI tests** to ensure code quality
 
 ### ✅ Unit Tests
 
-- Written using **JUnit 5**
-- Mocks and stubs created with **MockK**
+- Written using **JUnit 4**
+- Mocks created with [**MockK**](https://mockk.io/ANDROID.html)
 - Testable components include:
-  - ViewModels
+  - ViewModels with mocked HttpClient
 
 Run unit tests with:
 
@@ -64,7 +64,7 @@ Run unit tests with:
 
 - Written using **Compose Test**
 - Includes tests for:
-  - UI Screens
+  - UI Screens with mocked ViewModels
 
 Run UI tests with:
 
