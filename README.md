@@ -80,7 +80,7 @@ Follow these steps to set up and run the project locally.
 
 | Tool               | Version   |
 |--------------------|-----------|
-| **Android Studio** | ✅ Narwhal |
+| **Android Studio** | ✅ Meerkat |
 | **Java SDK**       | ✅ 21.0.6  |
 | **Gradle**         | ✅ 8.13    |
 | **Kotlin**         | ✅ 2.1.20  |
