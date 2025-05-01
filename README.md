@@ -13,15 +13,14 @@
   - Historical activity periods (quotes, order book, trades)
   - Website
 - 💡 **Modern UI:** Built using Jetpack Compose with Material 3 and Clean Architecture.
-
 ---
 
 ## 📸 Screenshots
 
 Below are sample screens of the app using the Cryptooly-inspired layout:
 
-| Exchange List | Exchange Details |
-|:-------------:|:----------------:|
+|                                           Exchange List                                           |                                          Exchange Details                                           |
+|:-------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------:|
 | ![Exchange List](https://github.com/user-attachments/assets/1b27b884-7967-4c35-8919-fd118c96d0cc) | ![Exchange Detail](https://github.com/user-attachments/assets/3fe568eb-d3c3-41a5-80a2-f5e8c673c9ce) |
 
 ---
@@ -44,18 +43,47 @@ This project is inspired by the [Cryptooly – Crypto Wallet Mobile UI](https://
 
 ---
 
+## 🧪 Testing
+
+The project includes both **unit tests** and **UI tests** to ensure code quality and stability.
+
+### ✅ Unit Tests
+
+- Written using **JUnit 5**
+- Mocks and stubs created with **MockK**
+- Testable components include:
+  - ViewModels
+
+Run unit tests with:
+
+```bash
+./gradlew testDebugUnitTest
+```
+
+### ✅ UI Tests
+
+- Written using **Compose Test**
+- Includes tests for:
+  - UI Screens
+
+Run UI tests with:
+
+```bash
+./gradlew connectedDebugAndroidTest
+```
+
 ## 🛠 Getting Started
 
 Follow these steps to set up and run the project locally.
 
-### ✅ Requirements
+### 🖥 Tested on
 
-| Tool               | Version                         |
-|--------------------|----------------------------------|
-| **Android Studio** | Narwhal | 2025.1.1 Canary 3       |
-| **Kotlin**         | 2.1.20                           |
-| **Java SDK**       | 21.0.6.3                         |
-| **Gradle**         | 8.1.3                            |
+| Tool               | Version   |
+|--------------------|-----------|
+| **Android Studio** | ✅ Narwhal |
+| **Java SDK**       | ✅ 21.0.6  |
+| **Gradle**         | ✅ 8.13    |
+| **Kotlin**         | ✅ 2.1.20  |
 
 ---
 
