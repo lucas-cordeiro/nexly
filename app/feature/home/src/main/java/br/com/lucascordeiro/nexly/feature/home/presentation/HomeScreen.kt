@@ -25,6 +25,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -125,7 +126,9 @@ private fun Sort(
                 text = "Sort",
                 style = NexlyTheme.typography.body,
                 color = Gray18,
-                modifier = Modifier.padding(end = 8.dp)
+                modifier = Modifier
+                    .padding(end = 8.dp)
+                    .testTag(HomeScreenTags.sortText)
             )
         }
 
@@ -158,6 +161,7 @@ private fun SortOptionButton(
         style = NexlyTheme.typography.body,
         color = tintColor,
         modifier = modifier
+            .testTag(HomeScreenTags.sortOptionText)
             .clip(MaterialTheme.shapes.small)
             .background(color = backgroundColor)
             .clickable(onClick = onClick)
@@ -177,7 +181,9 @@ private fun ExchangeListItem(
     Surface(
         onClick = onClick,
         shape = MaterialTheme.shapes.medium,
-        modifier = modifier.fillMaxWidth()
+        modifier = modifier
+            .fillMaxWidth()
+            .testTag(HomeScreenTags.exchangeItem)
     ) {
         Column(
             modifier = Modifier

@@ -4,23 +4,18 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.junit4.ComposeTestRule
 import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
 
 abstract class ScreenRobot(
     private val composeTestRule: ComposeTestRule
 ) {
-    fun assertDisplayed(testTag: String, useUnmergedTree: Boolean = false) : ScreenRobot {
+    fun assertDisplayed(text: String) : ScreenRobot {
         composeTestRule
-            .onNodeWithTag(testTag, useUnmergedTree)
+            .onNodeWithText(text)
             .assertExists()
             .assertIsDisplayed()
-        return this
-    }
-
-    fun assertNotExists(testTag: String, useUnmergedTree: Boolean = false) : ScreenRobot {
-        composeTestRule
-            .onNodeWithTag(testTag, useUnmergedTree)
-            .assertDoesNotExist()
         return this
     }
 
@@ -33,10 +28,13 @@ abstract class ScreenRobot(
         return this
     }
 
-    fun inputText(testTag: String, text: String, useUnmergedTree: Boolean = false) : ScreenRobot {
+    fun performClick(text: String) : ScreenRobot {
+        assertDisplayed(text)
+
         composeTestRule
-            .onNodeWithTag(testTag, useUnmergedTree)
-            .performTextInput(text)
+            .onNodeWithText(text)
+            .performClick()
+
         return this
     }
 }

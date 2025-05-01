@@ -14,6 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import br.com.lucascordeiro.nexly.shared.ui.error.ErrorState
@@ -27,7 +28,6 @@ fun UiFeedback(
 ) {
     if(errorState is ErrorState.Show) {
         UiFeedback(
-            title = "Ops",
             message = errorState.message,
             onDismissRequest = onDismissRequest
         )
@@ -37,12 +37,12 @@ fun UiFeedback(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun UiFeedback(
-    title: String = "Ops",
     message: String,
     onDismissRequest: () -> Unit
 ) {
     BasicAlertDialog(
-        onDismissRequest = onDismissRequest
+        onDismissRequest = onDismissRequest,
+        modifier = Modifier.testTag(UITags.feedback)
     ) {
         Surface(
             shape = RoundedCornerShape(8.dp)
@@ -58,9 +58,11 @@ fun UiFeedback(
                 Spacer(modifier = Modifier.height(8.dp))
 
                 UITextChip(
-                    text = title,
+                    text ="Ops",
                     style = NexlyTheme.typography.title,
-                    color = Red01
+                    color = Red01,
+                    modifier = Modifier
+                        .testTag(UITags.feedbackTitleText)
                 )
 
                 Spacer(modifier = Modifier.height(16.dp))
@@ -68,7 +70,9 @@ fun UiFeedback(
                 Text(
                     text = message,
                     style = NexlyTheme.typography.caption,
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .testTag(UITags.feedbackMessageText)
                 )
 
                 Spacer(
@@ -79,7 +83,9 @@ fun UiFeedback(
 
                 UiTextButton(
                     text = "Retry",
-                    onClick = onDismissRequest
+                    onClick = onDismissRequest,
+                    modifier = Modifier
+                        .testTag(UITags.feedbackButton)
                 )
             }
         }

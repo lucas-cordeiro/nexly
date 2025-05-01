@@ -6,6 +6,7 @@ dependencies {
     implementation(project(":app:shared:network"))
     implementation(project(":app:shared:navigation"))
     testImplementation(project(":app:shared:test"))
+    androidTestImplementation(project(":app:shared:test"))
 
     // Network
     implementation(libs.ktor.core)
@@ -13,4 +14,5 @@ dependencies {
     testImplementation(libs.ymir.test)
     testImplementation(libs.coroutines.test)
     testImplementation(libs.mockk.android)
+    androidTestImplementation(libs.mockk.android)
 }

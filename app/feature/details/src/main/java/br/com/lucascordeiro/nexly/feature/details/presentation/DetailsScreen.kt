@@ -25,6 +25,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
@@ -137,23 +138,27 @@ private fun Header(
 
             UITextChip(
                 text = "ID: $id",
-                color = Primary
+                color = Primary,
+                modifier = Modifier.testTag(DetailsScreenTags.exchangeId)
             )
         }
 
         VolumeRow(
             label = "Hourly",
-            value = volume.lastHour
+            value = volume.lastHour,
+            modifier = Modifier.testTag(DetailsScreenTags.exchangVolumeHourly)
         )
 
         VolumeRow(
             label = "Daily",
-            value = volume.lastDay
+            value = volume.lastDay,
+            modifier = Modifier.testTag(DetailsScreenTags.exchangVolumeDaily)
         )
 
         VolumeRow(
             label = "Monthly",
-            value = volume.lastMonth
+            value = volume.lastMonth,
+            modifier = Modifier.testTag(DetailsScreenTags.exchangVolumeMonthly)
         )
     }
 }

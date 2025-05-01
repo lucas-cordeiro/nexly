@@ -22,6 +22,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import br.com.lucascordeiro.nexly.shared.ui.R
@@ -50,15 +51,16 @@ fun UiToolbar(
             enter = expandHorizontally(expandFrom = Alignment.Start) + fadeIn(),
             exit = shrinkHorizontally(shrinkTowards = Alignment.Start) + fadeOut()
         ) {
-           Row {
-               BackButton(onClick = { onBackClick?.invoke() })
-               Spacer(modifier = Modifier.width(16.dp))
-           }
+            Row {
+                BackButton(onClick = { onBackClick?.invoke() })
+                Spacer(modifier = Modifier.width(16.dp))
+            }
         }
 
         Text(
             text = title,
-            style = NexlyTheme.typography.largeTitle
+            style = NexlyTheme.typography.largeTitle,
+            modifier = Modifier.testTag(UITags.toolbarText)
         )
     }
 }
